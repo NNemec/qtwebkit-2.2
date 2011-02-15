@@ -306,7 +306,7 @@ contains(DEFINES, ENABLE_GEOLOCATION=1) {
 
                 CONFIG += build_all
             } else {
-                debug_and_release:TARGET = $$qtLibraryTarget($$TARGET)
+                isEmpty(QT_SOURCE_TREE):debug_and_release:TARGET = $$qtLibraryTarget($$TARGET)
             }
 
             CONFIG += lib_bundle qt_no_framework_direct_includes qt_framework
