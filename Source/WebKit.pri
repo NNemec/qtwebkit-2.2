@@ -1,10 +1,10 @@
 # Include file to make it easy to include WebKit into Qt projects
 
 # Detect that we are building as a standalone package by the presence of
-# either the generated files directory or as part of the Qt package through
-# QTDIR_build
-CONFIG(QTDIR_build) {
-    CONFIG += standalone_package
+# the generated files directory
+exists($$PWD/WebCore/generated):CONFIG += standalone_package
+
+!isEmpty(QT_SOURCE_TREE) {
     # Make sure we compile both debug and release on mac when inside Qt.
     # This line was extracted from qbase.pri instead of including the whole file
     win32|mac:!macx-xcode:CONFIG += debug_and_release
@@ -15,7 +15,6 @@ CONFIG(QTDIR_build) {
         OBJECTS_DIR = obj/release
         DEFINES *= NDEBUG
     }
-    exists($$PWD/WebCore/generated):CONFIG += standalone_package
     # Make sure that build_all follows the build_all config in WebCore
     mac:contains(QT_CONFIG, qt_framework):!CONFIG(webkit_no_framework):!build_pass:CONFIG += build_all
 }
@@ -29,7 +28,7 @@ DEFINES += BUILDING_QT__=1
 building-libs {
     win32-msvc*|win32-icc: INCLUDEPATH += $$PWD/JavaScriptCore/os-win32
 } else {
-    CONFIG(QTDIR_build) {
+    !isEmpty(QT_SOURCE_TREE) {
         QT += webkit
     } else {
         QMAKE_LIBDIR = $$OUTPUT_DIR/lib $$QMAKE_LIBDIR

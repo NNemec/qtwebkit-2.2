@@ -17,7 +17,7 @@ unix:!mac:!symbian {
     PKGCONFIG += fontconfig
 }
 
-QT = core gui network testlib
+QT = core gui network testlib webkit
 macx: QT += xml
 
 HEADERS = $$BASEDIR/WorkQueue.h \

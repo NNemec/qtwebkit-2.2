@@ -19,7 +19,7 @@ load(mobilityconfig, true)
 ## Define default features macros for optional components
 ## (look for defs in config.h and included files!)
 # Try to locate sqlite3 source
-CONFIG(QTDIR_build) {
+!isEmpty(QT_SOURCE_TREE) {
     SQLITE3SRCDIR = $$QT_SOURCE_TREE/src/3rdparty/sqlite/
 } else {
     SQLITE3SRCDIR = $$(SQLITE3SRCDIR)
