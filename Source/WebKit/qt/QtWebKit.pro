@@ -25,6 +25,13 @@ CONFIG(standalone_package) {
     isEmpty(WC_GENERATED_SOURCES_DIR):WEBKIT2_GENERATED_SOURCES_DIR = ../../WebKit2/generated
 }
 
+CONFIG(QTDIR_build) {
+    include($$QT_SOURCE_TREE/src/qbase.pri)
+} else {
+    DESTDIR = $$OUTPUT_DIR/lib
+    symbian: TARGET =$$TARGET$${QT_LIBINFIX}
+}
+
 include($$PWD/Api/headers.pri)
 include($$SOURCE_DIR/WebKit.pri)
 include($$SOURCE_DIR/JavaScriptCore/JavaScriptCore.pri)
@@ -73,13 +80,6 @@ include($$SOURCE_DIR/WebCore/CodeGenerators.pri)
 CONFIG(release):!CONFIG(standalone_package) {
     contains(QT_CONFIG, reduce_exports):CONFIG += hide_symbols
     unix:contains(QT_CONFIG, reduce_relocations):CONFIG += bsymbolic_functions
-}
-
-CONFIG(QTDIR_build) {
-    include($$QT_SOURCE_TREE/src/qbase.pri)
-} else {
-    DESTDIR = $$OUTPUT_DIR/lib
-    symbian: TARGET =$$TARGET$${QT_LIBINFIX}
 }
 
 # Avoid ASCII-cast warnings because Qt use them a lot and warnings are treated as errors.
