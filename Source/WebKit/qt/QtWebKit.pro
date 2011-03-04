@@ -1,5 +1,5 @@
 # QtWebKit - qmake build info
-CONFIG += building-libs
+CONFIG += building-libs  qt_module
 CONFIG += depend_includepath
 
 TARGET = QtWebKit

@@ -1,5 +1,5 @@
 # WebCore - qmake build info
-CONFIG += building-libs qt_module
+CONFIG += building-libs
 CONFIG += depend_includepath
 
 isEmpty(OUTPUT_DIR): OUTPUT_DIR = ..
