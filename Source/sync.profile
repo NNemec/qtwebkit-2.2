@@ -37,3 +37,4 @@
         "QtDeclarative" => "90ff2cdea3126bdff2746ecf868004711ea628b1",
     },
 );
+@ignore_for_master_contents = ( "qwebscriptworld.h" );
