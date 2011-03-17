@@ -10,7 +10,7 @@ isEmpty(OUTPUT_DIR): OUTPUT_DIR = ../../..
 
 QMLDIRFILE = $${_PRO_FILE_PWD_}/qmldir
 copy2build.input = QMLDIRFILE
-copy2build.output = $$OUTPUT_DIR/imports/$$TARGETPATH/qmldir
+copy2build.output = $$QT.webkit.imports/$$TARGETPATH/qmldir
 !contains(TEMPLATE_PREFIX, vc):copy2build.variable_out = PRE_TARGETDEPS
 copy2build.commands = $$QMAKE_COPY ${QMAKE_FILE_IN} ${QMAKE_FILE_OUT}
 copy2build.name = COPY ${QMAKE_FILE_IN}
@@ -51,7 +51,7 @@ QT += declarative
 SOURCES += qdeclarativewebview.cpp plugin.cpp
 HEADERS += qdeclarativewebview_p.h
 
-DESTDIR = $$OUTPUT_DIR/imports/$$TARGETPATH
+DESTDIR = $$QT.webkit.imports/$$TARGETPATH
 target.path = $$[QT_INSTALL_IMPORTS]/$$TARGETPATH
 
 
