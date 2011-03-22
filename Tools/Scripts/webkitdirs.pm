@@ -1345,6 +1345,18 @@ sub retrieveQMakespecVar
     return $varvalue;
 }
 
+sub find_exe {
+    my ($exe) = @_;
+    return if (!defined($exe));
+    my @paths = split(/;/, $ENV{"PATH"});
+    foreach my $path (@paths) {
+        $path =~ s/\\$//g;
+        $path =~ s/\\/\//g;
+        my $file = $path . '/' . $exe;
+        return $file if ((-e $file) && (-f $file));
+    }
+}
+
 sub qtMakeCommand($)
 {
     my ($qmakebin) = @_;
@@ -1356,6 +1368,7 @@ sub qtMakeCommand($)
     #print "compiler found: " . $compiler . "\n";
 
     if ($compiler && $compiler eq "cl") {
+        return "jom" if(find_exe('jom.exe'));
         return "nmake";
     }
 
@@ -1640,7 +1653,7 @@ sub buildQMakeProject($@)
     for my $subdir (@subdirs) {
         my $dsMakefile = "Makefile.DerivedSources";
         print "Calling '$make $makeargs -C $subdir -f $dsMakefile generated_files' in " . $dir . "/$subdir\n\n";
-        if ($make eq "nmake") {
+        if ($make eq "nmake" || $make eq "jom") {
             my $subdirWindows = $subdir;
             $subdirWindows =~ s:/:\\:g;
             $result = system "pushd $subdirWindows && $make $makeargs -f $dsMakefile generated_files && popd";
