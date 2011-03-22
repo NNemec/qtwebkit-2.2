@@ -31,6 +31,9 @@ wince* {
     LIBS += mmtimer.lib
 }
 
+# for APIs used in wtf/OSRandomSource.cpp
+win32*:LIBS += -ladvapi32
+
 # Prevent warnings about difference in visibility on Mac OS X
 contains(QT_CONFIG, reduce_exports):CONFIG += hide_symbols
 unix:contains(QT_CONFIG, reduce_relocations):CONFIG += bsymbolic_functions

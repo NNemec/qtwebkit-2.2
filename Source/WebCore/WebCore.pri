@@ -210,11 +210,8 @@ contains(DEFINES, ENABLE_NETSCAPE_PLUGIN_API=1) {
     }
     win32-* {
         LIBS += \
-            -ladvapi32 \
-            -lgdi32 \
             -lshell32 \
             -lshlwapi \
-            -luser32 \
             -lversion
     }
 }
@@ -306,6 +303,7 @@ contains (CONFIG, text_breaking_with_icu) {
 }
 
 win32-* {
+    LIBS += -ladvapi32
     LIBS += -lgdi32
     LIBS += -lole32
     LIBS += -luser32
