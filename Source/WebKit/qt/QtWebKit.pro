@@ -312,7 +312,7 @@ mac {
         FRAMEWORK_HEADERS.version = Versions
         FRAMEWORK_HEADERS.files = $${headers.files}
         FRAMEWORK_HEADERS.path = Headers
-        QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
+        #QMAKE_BUNDLE_DATA += FRAMEWORK_HEADERS
     }
 
     #!contains(QT_CONFIG, modular):QMAKE_LFLAGS_SONAME = "$${QMAKE_LFLAGS_SONAME}$${DESTDIR}$${QMAKE_DIR_SEP}"
