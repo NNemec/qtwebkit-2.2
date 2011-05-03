@@ -51,7 +51,7 @@ contains(QT_CONFIG, embedded):CONFIG += embedded
 
 moduleFile=$$PWD/qt_webkit_version.pri
 isEmpty(QT_BUILD_TREE):include($$moduleFile)
-VERSION = $${QT_WEBKIT_MAJOR_VERSION}.$${QT_WEBKIT_MINOR_VERSION}.$${QT_WEBKIT_PATCH_VERSION}
+VERSION = $${QT.webkit.MAJOR_VERSION}.$${QT.webkit.MINOR_VERSION}.$${QT.webkit.PATCH_VERSION}
 
 include_webinspector: RESOURCES += $$SOURCE_DIR/WebCore/inspector/front-end/WebKit.qrc $$WC_GENERATED_SOURCES_DIR/InspectorBackendStub.qrc
 
