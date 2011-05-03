@@ -19,6 +19,8 @@ Tools/WebKitLauncher/*.h diff=objcppheader
 *.vsprops eol=crlf
 *.sln eol=crlf
 
+.tag ident
+
 LayoutTests/dom/svg/level3/xpath/Attribute_Nodes.svg -crlf
 LayoutTests/dom/svg/level3/xpath/Attribute_Nodes_xmlns.svg -crlf
 LayoutTests/dom/svg/level3/xpath/Comment_Nodes.svg -crlf
