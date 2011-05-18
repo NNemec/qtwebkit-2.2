@@ -26,7 +26,8 @@ CONFIG(standalone_package) {
 }
 
 CONFIG(QTDIR_build) {
-    include($$QT_SOURCE_TREE/src/qbase.pri)
+    exists($$QT_SOURCE_TREE/src/qbase.pri):include($$QT_SOURCE_TREE/src/qbase.pri)
+    else:load(qt_module_config)
 } else {
     DESTDIR = $$OUTPUT_DIR/lib
     symbian: TARGET =$$TARGET$${QT_LIBINFIX}
