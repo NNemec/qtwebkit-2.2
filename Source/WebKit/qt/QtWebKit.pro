@@ -4,6 +4,7 @@ CONFIG += depend_includepath
 
 TARGET = QtWebKit
 TEMPLATE = lib
+MODULE = webkit
 
 DEFINES += BUILDING_WEBKIT
 
