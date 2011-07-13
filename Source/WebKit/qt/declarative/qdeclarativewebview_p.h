@@ -23,7 +23,7 @@
 
 #include <QtCore/QBasicTimer>
 #include <QtCore/QUrl>
-#include <QtDeclarative/QDeclarativeItem>
+#include <QtQuick1/QDeclarativeItem>
 #include <QtGui/QAction>
 #include <QtNetwork/QNetworkAccessManager>
 #include "qgraphicswebview.h"

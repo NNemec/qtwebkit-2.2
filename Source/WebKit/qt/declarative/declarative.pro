@@ -31,7 +31,7 @@ symbian: {
 
 include(../../../WebKit.pri)
 
-QT += declarative
+QT += declarative qtquick1
 
 !CONFIG(standalone_package) {
     linux-* {
