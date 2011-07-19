@@ -18,6 +18,8 @@ exists($$PWD/WebCore/generated):CONFIG += standalone_package
     # Make sure that build_all follows the build_all config in WebCore
     mac:contains(QT_CONFIG, qt_framework):!CONFIG(webkit_no_framework):!build_pass:CONFIG += build_all
 }
+#We don't want verify and other platform macros to pollute the namespace
+mac: DEFINES += __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES=0
 
 CONFIG(standalone_package): DEFINES *= NDEBUG
 
