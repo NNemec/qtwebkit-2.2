@@ -354,24 +354,23 @@ defineTest(prependWebCoreLib) {
     pathToWebCoreOutput = $$ARGS/$$WEBCORE_DESTDIR
 
     win32-msvc*|wince* {
-        LIBS = -l$$WEBCORE_TARGET $$LIBS
-        LIBS = -L$$pathToWebCoreOutput $$LIBS
+        LIBS_PRIVATE = -l$$WEBCORE_TARGET $$LIBS_PRIVATE
+        LIBS_PRIVATE = -L$$pathToWebCoreOutput $$LIBS_PRIVATE
         POST_TARGETDEPS += $${pathToWebCoreOutput}$${QMAKE_DIR_SEP}$${WEBCORE_TARGET}.lib
     } else:symbian {
-        LIBS = -l$${WEBCORE_TARGET}.lib $$LIBS
+        LIBS_PRIVATE = -l$${WEBCORE_TARGET}.lib $$LIBS_PRIVATE
         QMAKE_LIBDIR += $$pathToWebCoreOutput
         POST_TARGETDEPS += $${pathToWebCoreOutput}$${QMAKE_DIR_SEP}$${WEBCORE_TARGET}.lib
     } else {
         QMAKE_LIBDIR = $$pathToWebCoreOutput $$QMAKE_LIBDIR
-        LIBS = -l$$WEBCORE_TARGET $$LIBS
+        LIBS_PRIVATE = -l$$WEBCORE_TARGET $$LIBS_PRIVATE
         POST_TARGETDEPS += $${pathToWebCoreOutput}$${QMAKE_DIR_SEP}lib$${WEBCORE_TARGET}.a
     }
-    
-    CONFIG -= explicitlib
+
+    export(LIBS_PRIVATE)
     export(QMAKE_LIBDIR)
     export(POST_TARGETDEPS)
     export(CONFIG)
-    export(LIBS)
 
     return(true)
 }

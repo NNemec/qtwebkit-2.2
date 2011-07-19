@@ -73,11 +73,11 @@ defineTest(prependJavaScriptCoreLib) {
     pathToJavaScriptCoreOutput = $$ARGS/$$JAVASCRIPTCORE_DESTDIR
 
     win32-msvc*|wince* {
-        LIBS = -l$$JAVASCRIPTCORE_TARGET $$LIBS
-        LIBS = -L$$pathToJavaScriptCoreOutput $$LIBS
+        LIBS_PRIVATE = -l$$JAVASCRIPTCORE_TARGET $$LIBS_PRIVATE
+        LIBS_PRIVATE = -L$$pathToJavaScriptCoreOutput $$LIBS_PRIVATE
         POST_TARGETDEPS += $${pathToJavaScriptCoreOutput}$${QMAKE_DIR_SEP}$${JAVASCRIPTCORE_TARGET}.lib
     } else:symbian {
-        LIBS = -l$${JAVASCRIPTCORE_TARGET}.lib $$LIBS
+        LIBS_PRIVATE = -l$${JAVASCRIPTCORE_TARGET}.lib $$LIBS_PRIVATE
         # The default symbian build system does not use library paths at all. However when building with
         # qmake's symbian makespec that uses Makefiles
         QMAKE_LIBDIR += $$pathToJavaScriptCoreOutput
@@ -86,7 +86,7 @@ defineTest(prependJavaScriptCoreLib) {
         # Make sure jscore will be early in the list of libraries to workaround a bug in MinGW
         # that can't resolve symbols from QtCore if libjscore comes after.
         QMAKE_LIBDIR = $$pathToJavaScriptCoreOutput $$QMAKE_LIBDIR
-        LIBS = -l$$JAVASCRIPTCORE_TARGET $$LIBS
+        LIBS_PRIVATE = -l$$JAVASCRIPTCORE_TARGET $$LIBS_PRIVATE
         POST_TARGETDEPS += $${pathToJavaScriptCoreOutput}$${QMAKE_DIR_SEP}lib$${JAVASCRIPTCORE_TARGET}.a
     }
 
@@ -94,11 +94,7 @@ defineTest(prependJavaScriptCoreLib) {
         LIBS += -lwinmm
     }
 
-    # The following line is to prevent qmake from adding jscore to libQtWebKit's prl dependencies.
-    # The compromise we have to accept by disabling explicitlib is to drop support to link QtWebKit and QtScript
-    # statically in applications (which isn't used often because, among other things, of licensing obstacles).
-    CONFIG -= explicitlib
-
+    export(LIBS_PRIVATE)
     export(QMAKE_LIBDIR)
     export(LIBS)
     export(POST_TARGETDEPS)

@@ -69,26 +69,23 @@ defineTest(prependWebKit2Lib) {
     pathToWebKit2Output = $$ARGS/$$WEBKIT2_DESTDIR
 
     win32-msvc*|wince* {
-        LIBS = -l$$WEBKIT2_TARGET $$LIBS
-        LIBS = -L$$pathToWebKit2Output $$LIBS
+        LIBS_PRIVATE = -l$$WEBKIT2_TARGET $$LIBS_PRIVATE
+        LIBS_PRIVATE = -L$$pathToWebKit2Output $$LIBS_PRIVATE
         POST_TARGETDEPS += $${pathToWebKit2Output}$${QMAKE_DIR_SEP}$${WEBKIT2_TARGET}.lib
     } else:symbian {
-        LIBS = -l$${WEBKIT2_TARGET}.lib $$LIBS
+        LIBS_PRIVATE = -l$${WEBKIT2_TARGET}.lib $$LIBS_PRIVATE
         QMAKE_LIBDIR += $$pathToWebKit2Output
         POST_TARGETDEPS += $${pathToWebKit2Output}$${QMAKE_DIR_SEP}$${WEBKIT2_TARGET}.lib
     } else {
         QMAKE_LIBDIR = $$pathToWebKit2Output $$QMAKE_LIBDIR
-        LIBS = -l$$WEBKIT2_TARGET $$LIBS
+        LIBS_PRIVATE = -l$$WEBKIT2_TARGET $$LIBS_PRIVATE
         POST_TARGETDEPS += $${pathToWebKit2Output}$${QMAKE_DIR_SEP}lib$${WEBKIT2_TARGET}.a
     }
 
-    # The following line is to prevent qmake from adding webkit2 to libQtWebKit's prl dependencies.
-    CONFIG -= explicitlib
-
+    export(LIBS_PRIVATE)
     export(QMAKE_LIBDIR)
     export(POST_TARGETDEPS)
     export(CONFIG)
-    export(LIBS)
 
     return(true)
 }
