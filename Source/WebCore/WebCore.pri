@@ -251,13 +251,11 @@ contains(DEFINES, ENABLE_VIDEO=1) {
         # Add phonon manually to prevent it from coming first in
         # the include paths, as Phonon's path.h conflicts with
         # WebCore's Path.h on case-insensitive filesystems.
-
         defined(qtAddModule, test):qtAddModule(phonon)
-        else {
-            qtAddLibrary(phonon)
-            INCLUDEPATH -= $$QT.phonon.includes
-            INCLUDEPATH += $$QT.phonon.includes
-        }
+        else:                      qtAddLibrary(phonon)
+        INCLUDEPATH -= $$QT.phonon.includes
+        INCLUDEPATH += $$QT.phonon.includes
+
         mac {
             INCLUDEPATH -= $$QT.phonon.libs/phonon.framework/Headers
             INCLUDEPATH += $$QT.phonon.libs/phonon.framework/Headers
