@@ -1450,8 +1450,6 @@ PassRefPtr<Widget> FrameLoaderClientImpl::createPlugin(
     if (!m_webFrame->client())
         return 0;
 
-    RefPtr<HTMLPlugInElement> protect(element);
-
     WebPluginParams params;
     params.url = url;
     params.mimeType = mimeType;
