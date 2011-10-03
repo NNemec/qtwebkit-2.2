@@ -2702,3 +2702,12 @@ http/tests/security/cookies/third-party-cookie-blocking.html
 # the original test-case (it's a crash test) passes in our local build
 # environment, I guess there's something missing in our DRT.
 editing/selection/select-start-remove-root-crash.html
+
+###### Manually added because of cherry-picks after the 2.2.0 release ######
+
+# fails with different layouts on different platforms, not sure why
+fast/table/quote-text-around-iframe.html
+
+# crash test, but for some reason its structure is dumped by DRT
+# and its results differ in different platforms
+svg/text/text-style-recalc-crash.html

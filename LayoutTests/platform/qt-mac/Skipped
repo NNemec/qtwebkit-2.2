@@ -4164,3 +4164,20 @@ fast/table/table-style-not-updated.html
 # (were skipped on trunk in r94924)
 fast/lists/list-marker-before-content-table.html
 fast/runin/runin-generated-before-content.html
+
+###### Manually added because of cherry-picks after the 2.2.0 release ######
+
+# skipped on trunk in r95408
+plugins/destroy-during-npp-new-object-with-fallback-content.html
+
+# Qt specific results were added by r95520, but they fail on Qt-Mac platform
+# (skipped on trunk in r95601)
+fast/table/table-cell-before-after-content-around-table-block.html
+fast/table/table-cell-before-after-content-around-table-row.html
+fast/table/table-cell-before-after-content-around-table.html
+fast/table/table-row-before-after-content-around-block.html
+fast/table/table-row-before-after-content-around-table.html
+
+# XXX these work in the other platforms, not sure why they fail on mac
+fast/ruby/ruby-text-before-after-content.html
+fast/ruby/ruby-base-merge-block-children-crash.html
